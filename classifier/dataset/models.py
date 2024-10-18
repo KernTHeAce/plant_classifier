@@ -19,11 +19,11 @@ class PlantInfo(models.Model):
 
 
 class PlantImage(models.Model):
-    promo = models.ForeignKey(PlantInfo, on_delete=models.CASCADE, related_name="images")
+    plant = models.ForeignKey(PlantInfo, on_delete=models.CASCADE, related_name="images")
     image = models.ImageField(upload_to="media/classifier/")
 
     def __str__(self):
-        return self.promo.name
+        return self.plant.name
 
 
 class Dataset(models.Model):
