@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from .models import Label, PlantInfo, PlantImage, Plant, Dataset
+from classifier.dataset.models import Label, PlantInfo, PlantImage, Plant, Dataset
+from classifier.request_history.models import RequestHistory
 
 admin.site.register(Label)
 
@@ -44,3 +45,11 @@ class DatasetAdmin(admin.ModelAdmin):
         return len(obj.plants.all())
 
     get_num_classes.short_description = 'Number of classes'
+
+
+@admin.register(RequestHistory)
+class HistoryAdmin(admin.ModelAdmin):
+    list_display = ("preview", "user", 'created_at')
+
+    def preview(self, obj):
+        return str(obj)
