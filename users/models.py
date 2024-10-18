@@ -6,7 +6,7 @@ from .managers import UserManager
 class User(AbstractUser):
     objects = UserManager()
 
-    REQUIRED_FIELDS = ['password']
+    REQUIRED_FIELDS = []
     avatar = models.ImageField(blank=True, null=True)
     inst = models.CharField(max_length=150, blank=True)
     email = models.EmailField(blank=True)
