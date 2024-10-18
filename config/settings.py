@@ -7,7 +7,7 @@ SECRET_KEY = "django-insecure-5*=s8s^u(i(07!9=mq^wz2=o3kw0yp@%*jnw##x_8c7+y(41nd
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["0.0.0.0"]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
@@ -29,8 +29,10 @@ EXTERNAL_APPS = [
 
 LOCAL_APPS = [
     "classifier",
-    "users"
+    "users",
 ]
+
+ADMIN_PATH = "admin47"
 
 INSTALLED_APPS = [*DJANGO_APPS, *EXTERNAL_APPS, *LOCAL_APPS]
 
@@ -100,18 +102,9 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = 'static/'
 
 REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework.authentication.BasicAuthentication",
-    ],
-    "DEFAULT_PARSER_CLASSES": [
-        "rest_framework.parsers.FormParser",
-        "rest_framework.parsers.MultiPartParser",
-    ],
-    "DEFAULT_RENDERER_CLASSES": ["rest_framework.renderers.BrowsableAPIRenderer"],
-    "URL_FIELD_NAME": "_self",
+    "DEFAULT_AUTHENTICATION_CLASSES": ["rest_framework.authentication.TokenAuthentication"],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 100,
-    "TEST_REQUEST_DEFAULT_FORMAT": "json",
 }
 
 SWAGGER_SETTINGS = {
