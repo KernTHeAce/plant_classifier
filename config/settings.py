@@ -7,7 +7,7 @@ SECRET_KEY = "django-insecure-5*=s8s^u(i(07!9=mq^wz2=o3kw0yp@%*jnw##x_8c7+y(41nd
 
 DEBUG = True
 
-ALLOWED_HOSTS = ["0.0.0.0", "127.0.0.1"]
+ALLOWED_HOSTS = ["*"]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
@@ -25,6 +25,7 @@ EXTERNAL_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     "drf_yasg",
+    "corsheaders"
 ]
 
 LOCAL_APPS = [
@@ -47,6 +48,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -112,6 +115,8 @@ SWAGGER_SETTINGS = {
     "USE_SESSION_AUTH": False,
     "DEEP_LINKING": True,
 }
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
