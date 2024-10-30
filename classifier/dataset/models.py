@@ -30,6 +30,8 @@ class Dataset(models.Model):
     name = models.CharField(max_length=70)
     description = models.TextField(null=True, blank=True)
     is_active = models.BooleanField(default=False)
+    threshold = models.FloatField(default=0.5)
+    unrecognized_info = models.ForeignKey(PlantInfo, on_delete=models.DO_NOTHING)
 
     def save(self, *args, **kwargs):
         if kwargs.get("is_active"):
