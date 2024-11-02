@@ -25,9 +25,9 @@ class ClassifierView(APIView):
         current_dataset = Dataset.objects.filter(is_active=True).first()
         if response["probability"] < current_dataset.threshold:
             RequestHistory.objects.create(user=request.user, image=image, info=current_dataset.unrecognized_info,)
-            serializer = UnrecognizedPlantSerializer(current_dataset)
+            serializer = UnrecognizedPlantSerializer(current_dataset, context={"request": request})
             return Response(serializer.data)
         plant = Plant.objects.filter(dataset__is_active=True, label__value=response["label"]).first()
         RequestHistory.objects.create(user=request.user, image=image, info=plant.info, label=plant.label)
-        serializer = PlantSerializer(plant)
+        serializer = PlantSerializer(plant, context={"request": request})
         return Response(serializer.data)

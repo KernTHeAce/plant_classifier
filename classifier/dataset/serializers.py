@@ -3,9 +3,15 @@ from .models import Plant, PlantImage, Dataset, Label
 
 
 class PlantImageSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+
     class Meta:
         model = PlantImage
         fields = ("image", )
+
+    def get_image(self, obj):
+        request = self.context.get("request")
+        return request.build_absolute_uri(obj.image.url)
 
 
 class LabelSerializer(serializers.ModelSerializer):

@@ -20,7 +20,7 @@ class PlantInfo(models.Model):
 
 class PlantImage(models.Model):
     plant = models.ForeignKey(PlantInfo, on_delete=models.CASCADE, related_name="images")
-    image = models.ImageField(upload_to="media/classifier/")
+    image = models.ImageField()
 
     def __str__(self):
         return self.plant.name
