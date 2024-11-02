@@ -1,11 +1,17 @@
 from rest_framework import serializers
-from .models import Plant, PlantImage, Dataset
+from .models import Plant, PlantImage, Dataset, Label
 
 
 class PlantImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = PlantImage
         fields = ("image", )
+
+
+class LabelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Label
+        fields = "__all__"
 
 
 class PlantSerializer(serializers.ModelSerializer):
